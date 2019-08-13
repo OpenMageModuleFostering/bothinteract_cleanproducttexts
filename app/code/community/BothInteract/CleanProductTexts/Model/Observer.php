@@ -38,29 +38,40 @@ class BothInteract_CleanProductTexts_Model_Observer {
                 . mb_strtoupper($product->getTypeId())
                 . ' product ' . $product->getId());
 
+        $isChanged = false;
+
         foreach ($cleaningOptions as $cleaningOption) {
             $this->logToFile('Checking option ' . $cleaningOption);
 
             // remove control characters for description and short description
             if ($cleaningOption == BothInteract_CleanProductTexts_Model_System_Config_Source_View::$VALUE_CLEANING_TYPE_CONTROL_CHARACTERS) {
-                // @see http://unicode-table.com/en/
-                $this->logToFile('Cleaning product ' . $product->getId());
 
+                // @see http://unicode-table.com/en/
                 $regexp = '/[^\PC\s]/u'; //i.e. /[\x00—\x1F\x80-\x9f]
-                $product->setDescription(preg_replace('/\x0b/', '', preg_replace($regexp, '', $product->getDescription())));
-                $product->setShortDescription(preg_replace('/\x0b/', '', preg_replace($regexp, '', $product->getShortDescription())));
+
+                if (preg_match($regexp, $product->getDescription()) ||
+                        preg_match($regexp, $product->getShortDescription())) { // check to avoid unnecessary save()
+                    $this->logToFile('Cleaning product ' . $product->getId());
+                    $product->setDescription(preg_replace('/\x0b|\x0c/', '', preg_replace($regexp, '', $product->getDescription())));
+                    $product->setShortDescription(preg_replace('/\x0b|\x0c/', '', preg_replace($regexp, '', $product->getShortDescription())));
+                    $isChanged = true;
+                } else {
+                    $this->logToFile('Ignoring product ' . $product->getId());
+                }
             }
         }
 
-        if (Mage::getStoreConfig(self::$_MODULE_NAMESPACE
-                        . '/general/is_simulation')) {
-            $this->logToFile('************************************');
-            $this->logToFile('SIMULATION: Not saving product '
-                    . $product->getId());
-            $this->logToFile('************************************');
-        } else {
-            $this->logToFile('Saving product ' . $product->getId());
-            $product->save();
+        if ($isChanged) {
+            if (Mage::getStoreConfig(self::$_MODULE_NAMESPACE
+                            . '/general/is_simulation')) {
+                $this->logToFile('************************************');
+                $this->logToFile('SIMULATION: Not saving product '
+                        . $product->getId());
+                $this->logToFile('************************************');
+            } else {
+                $this->logToFile('Saving product ' . $product->getId());
+                $product->save();
+            }
         }
 
         $this->logToFile('Successfully handled product ' . $product->getId());
