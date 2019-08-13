@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<config>
+    
+    <modules>
+        <BothInteract_CleanProductTexts>
+            <version>1.0.0</version>
+        </BothInteract_CleanProductTexts>
+    </modules>
+    
+    <global>
+        <!-- inform Magento of our new model class-->
+        <models>
+            <bothinteract_cleanproducttexts>
+                <class>BothInteract_CleanProductTexts_Model</class>
+            </bothinteract_cleanproducttexts>
+        </models>
+        <!-- attach our observer class to catalog_product_save_after event-->
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <bothinteract_cleanproducttexts_model_observer>
+                        <type>singleton</type>
+                        <class>BothInteract_CleanProductTexts_Model_Observer</class>
+                        <method>catalog_product_save_after</method>
+                    </bothinteract_cleanproducttexts_model_observer>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </global>
+    
+    <default>
+        <bothinteract_cleanproducttexts>
+            <general>
+                <is_active>0</is_active>
+                <is_simulation>1</is_simulation>
+                <required_image_types></required_image_types>
+                <log_file>cleanproducttexts.log</log_file>
+            </general>
+        </bothinteract_cleanproducttexts>
+    </default>
+</config>

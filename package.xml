@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+    <name>BothInteract_CleanProductTexts</name>
+    <version>1.0.0</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/mit-license.php">MIT License (MITL)</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>This extension helps you to automatically clean product texts.</summary>
+    <description>&lt;p&gt;This extension helps you to automatically clean your product texts (description and short description) by removing unwanted (invisible) control characters that might cause problems with other extensions or when exporting products.&lt;/p&gt;&#xD;
+&#xD;
+&lt;p&gt;Oftentimes, unwanted characters are copied into product descriptions when copying texts from PDF documents. Since these control characters are not displayed by browsers they cannot be removed manually from Magento's editor.&lt;/p&gt;&#xD;
+&#xD;
+&lt;p&gt;This extension will check your product texts and automatically removed unwanted characters.&lt;/p&gt;&#xD;
+&#xD;
+&lt;p&gt;Thus, your employees can still copy texts from e.g. PDFs directly into Magento - this extension will take care of removing unwanted characters when saving products.&lt;/p&gt;&#xD;
+&#xD;
+&lt;h3&gt;Simulate Product Cleaning&lt;/h3&gt;&#xD;
+&lt;p&gt;Furthermore, you can also &lt;b&gt;simulate&lt;/b&gt; the process of cleaning product texts by activating the corresponding option in the configuration under &lt;i&gt;General&lt;/i&gt; / &lt;i&gt;Simulate&lt;/i&gt;.&lt;/p&gt;&#xD;
+&#xD;
+&lt;h3&gt;Log File&lt;/h3&gt;&#xD;
+&lt;p&gt;In addition this extension enabled you to logs messages to a custom log file that can be specified in the configuration options to your log directory under &lt;i&gt;General&lt;/i&gt; / &lt;i&gt;Log File&lt;/i&gt;.&lt;/p&gt; &#xD;
+&#xD;
+&lt;p&gt;So you have the option to easily track events handled by this extension and check for possible problems.&lt;/p&gt;</description>
+    <notes>Initial public release.</notes>
+    <authors><author><name>Matthias Kerstner</name><user>mkbothinteract</user><email>matthias@both-interact.com</email></author></authors>
+    <date>2015-03-06</date>
+    <time>12:52:21</time>
+    <contents><target name="magecommunity"><dir name="BothInteract"><dir name="CleanProductTexts"><dir name="Model"><file name="Observer.php" hash="fa5e9b0483e429093f7ed413727f99bb"/><dir name="System"><dir name="Config"><dir name="Source"><file name="View.php" hash="06c8cab69af1427591ccd80a5ff84b85"/></dir></dir></dir></dir><dir name="etc"><file name="adminhtml.xml" hash="09afe6511e6b0c1ee544c2ca87d59474"/><file name="config.xml" hash="8b3dceb0487024d8822a504af9c0241e"/><file name="system.xml" hash="9250f6bd8e3089b823c46138e1d6622f"/></dir></dir></dir></target><target name="mageetc"><dir name="modules"><file name="BothInteract_CleanProductTexts.xml" hash="c685308779c1427921191dd9860627a1"/></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.3.0</min><max>5.6.6</max></php></required></dependencies>
+</package>

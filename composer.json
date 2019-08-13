@@ -1,0 +1,16 @@
+{
+    "name": "OpenMageModuleFostering/BothInteract_CleanProductTexts",
+    "type": "magento-module",
+    "license": "MIT-License-(MITL)",
+    "homepage": "",
+    "description": "This extension helps you to automatically clean product texts.",
+    "authors": [
+    {
+        "name": "Matthias Kerstner",
+        "email": "matthias@both-interact.com"
+    }
+],
+    "suggest": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
